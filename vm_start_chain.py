@@ -26,7 +26,7 @@ if __name__ == '__main__':
     client.on_connect = on_connect
           
     client.connect(host="172.20.10.5", port=1883, keepalive=60)
-    
+    num = 0
     """ask paho-mqtt to spawn a separate thread to handle
     incoming and outgoing mqtt messages."""
     client.publish("gtrue/ping", f"{num}")
