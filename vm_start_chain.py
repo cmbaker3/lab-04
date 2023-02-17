@@ -13,6 +13,7 @@ def on_connect(client, userdata, flags, rc):
     # Subscribe to servers
     print("Connected to server (i.e., broker) with result code "+str(rc))
     client.subscribe("gtrue/pong")
+    num = 0
     
     #Add the custom callbacks by indicating the topic and the name of the callback handle
     client.message_callback_add("gtrue/pong", call_back_pong)
