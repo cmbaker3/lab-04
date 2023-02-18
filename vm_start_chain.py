@@ -16,7 +16,7 @@ def on_connect(client, userdata, flags, rc):
 def call_back_pong(client, userdata, message):
     num = int(message.payload.decode()) + 1 
     time.sleep(4)
-    client.publish("cmbaker/ping", f"{num}")
+    client.publish("cmbaker/ping", num)
     print("Pinging Num!" +f"{num}")
 
 def on_message(client, userdata, msg):
@@ -31,15 +31,13 @@ if __name__ == '__main__':
     #attach the on_connect() callback function defined above to the mqtt client
     client.on_connect = on_connect
 
-    #attach the on_connect() callback function defined above to the mqtt client
-    client.on_connect = on_connect
           
     client.connect(host="eclipse.usc.edu", port=11000, keepalive=60)
     
     client.loop_start()
     num = 0
     
-    client.publish("cmbaker/ping", f"{num}")
+    client.publish("cmbaker/ping", num)
     
     while True:
       pass
