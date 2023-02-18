@@ -15,7 +15,7 @@ def on_connect(client, userdata, flags, rc):
    
 def call_back_ping(client, userdata, message):
     num = int(message.payload.decode()) + 1
-    print("Ping: " + num) 
+    print(num) 
     time.sleep(1)
     client.publish("cmbaker/pong", num)
     print("Ponging Num!")
