@@ -6,17 +6,17 @@ def call_back_pong(client, userdata, message):
    num = int(message.payload.decode()) + 1;
    print("Pong: " + num) 
    time.sleep(4)
-   client.publish("gtrue/ping", f"{num}")
+   client.publish("cmbaker/ping", f"{num}")
    print("Pinging Num!")
 
 def on_connect(client, userdata, flags, rc):
     # Subscribe to servers
     print("Connected to server (i.e., broker) with result code "+str(rc))
-    client.subscribe("gtrue/pong")
+    client.subscribe("cmbaker/pong")
     num = 0
     
     #Add the custom callbacks by indicating the topic and the name of the callback handle
-    client.message_callback_add("gtrue/pong", call_back_pong)
+    client.message_callback_add("cmbaker/pong", call_back_pong)
 
 if __name__ == '__main__':
     #create a client object
@@ -25,14 +25,16 @@ if __name__ == '__main__':
     #attach the on_connect() callback function defined above to the mqtt client
     client.on_connect = on_connect
           
-    client.connect(host="172.20.10.5", port=1883, keepalive=60)
+    client.connect(host="68.181.32.115", port=11000, keepalive=60)
+    
+    client.loop_start()
     num = 0
-    """ask paho-mqtt to spawn a separate thread to handle
-    incoming and outgoing mqtt messages."""
-    client.publish("gtrue/ping", f"{num}")
+    
+    client.publish("cmbaker/ping", f"{num}")
     print("Pinging Num!")
-    client.loop_forever()
-    time.sleep(1)
+    
+    while True:
+      pass
         
           
 
