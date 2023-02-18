@@ -19,11 +19,17 @@ def call_back_pong(client, userdata, message):
     client.publish("cmbaker/ping", f"{num}")
     print("Pinging Num!" +f"{num}")
 
+def on_message(client, userdata, msg):
+    print("Default callback - topic: " + msg.topic + "   msg: " + str(msg.payload, "utf-8"))
       
 
 if __name__ == '__main__':
     #create a client object
     client = mqtt.Client()
+    #attach a default callback which we defined above for incoming mqtt messages
+    client.on_message = on_message
+    #attach the on_connect() callback function defined above to the mqtt client
+    client.on_connect = on_connect
 
     #attach the on_connect() callback function defined above to the mqtt client
     client.on_connect = on_connect
