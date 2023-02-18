@@ -8,7 +8,6 @@ def on_connect(client, userdata, flags, rc):
     # Subscribe to servers
     print("Connected to server (i.e., broker) with result code "+str(rc))
     client.subscribe("cmbaker/pong")
-    num = 0
     
     #Add the custom callbacks by indicating the topic and the name of the callback handle
     client.message_callback_add("cmbaker/pong", call_back_pong)
@@ -40,9 +39,10 @@ if __name__ == '__main__':
     time.sleep(1)
     
     client.publish("cmbaker/ping", num)
+    print("First Ping")
     
     while True:
-      pass
+        pass
         
           
 
