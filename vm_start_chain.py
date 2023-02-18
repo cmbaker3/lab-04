@@ -2,12 +2,12 @@
 
 import paho.mqtt.client as mqtt
 import socket
+
 def call_back_pong(client, userdata, message):
-   num = int(message.payload.decode()) + 1;
-   print("Pong: " + num) 
+   num = int(message.payload.decode()) + 1; 
    time.sleep(4)
    client.publish("cmbaker/ping", f"{num}")
-   print("Pinging Num!")
+   print("Pinging Num!" +f"{num}")
 
 def on_connect(client, userdata, flags, rc):
     # Subscribe to servers
@@ -17,6 +17,8 @@ def on_connect(client, userdata, flags, rc):
     
     #Add the custom callbacks by indicating the topic and the name of the callback handle
     client.message_callback_add("cmbaker/pong", call_back_pong)
+
+      
 
 if __name__ == '__main__':
     #create a client object
@@ -31,7 +33,6 @@ if __name__ == '__main__':
     num = 0
     
     client.publish("cmbaker/ping", f"{num}")
-    print("Pinging Num!")
     
     while True:
       pass
