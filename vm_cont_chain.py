@@ -7,16 +7,16 @@ import socket
 def on_connect(client, userdata, flags, rc):
     # Subscribe to servers
     print("Connected to server (i.e., broker) with result code "+str(rc))
-    client.subscribe("cmbaker/pong")
+    client.subscribe("cmbaker/ping")
     
     #Add the custom callbacks by indicating the topic and the name of the callback handle
-    client.message_callback_add("cmbaker/pong", call_back_pong)
+    client.message_callback_add("cmbaker/ping", call_back_ping)
    
-def call_back_pong(client, userdata, message):
+def call_back_ping(client, userdata, message):
     num = int(message.payload.decode()) + 1
     print("Ping: " + num) 
     time.sleep(4)
-    client.publish("cmbaker/ping", num)
+    client.publish("cmbaker/pong", num)
     print("Ponging Num!")
       
 def on_message(client, userdata, msg):
