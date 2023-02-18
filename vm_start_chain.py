@@ -37,6 +37,8 @@ if __name__ == '__main__':
     client.loop_start()
     num = 0
     
+    time.sleep(1)
+    
     client.publish("cmbaker/ping", num)
     
     while True:
