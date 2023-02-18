@@ -26,12 +26,8 @@ if __name__ == '__main__':
           
     client.connect(host="68.181.32.115", port=11000, keepalive=60)
     
-    client.loop_start()
-    client.publish("cmbaker/ping", f"{num}")
-    print("Pinging num!")
-   
-    while True:
-         pass
+    client.loop_forever()
+    time.sleep(1)
    
         
           
